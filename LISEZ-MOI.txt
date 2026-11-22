@@ -1,0 +1,19 @@
+SNIPER HQ — Edition 2026
+========================
+OUVRIR : double-cliquer sur index.html (Chrome, Edge, Safari).
+Toutes les fonctions de classement / calcul / CSV / sauvegarde fonctionnent localement, sans installation.
+
+DEPART : les exemples affichés sont FICTIFS, pas des annonces Vinted réelles. Ils sont remplacés dès le premier ajout ou import réel.
+Le site n'est pas connecté à Vinted, n'interroge pas ses API et ne collecte pas ses données automatiquement.
+
+UTILISATION :
+1. Onglet Importer : ouvrir des recherches Vinted, copier les liens des annonces.
+2. Bouton Nouvelle annonce : renseigner les prix, coûts et liens, puis enregistrer.
+3. Onglet Opportunités : choisir filtres / classement. Vérifier l'origine et le prix de revente avant d'acheter.
+4. Onglet Suivi : suivre les annonces repérées, achetées et vendues.
+5. Onglet Réglages : ajuster la provision fiscale et les critères de notation.
+6. Sauvegarde JSON : protéger ses données et les déplacer entre appareils.
+
+ATTENTION : les données sont dans le stockage local de ce navigateur. Sans sauvegarde, elles peuvent être perdues en vidant les données ou en changeant d'appareil.
+
+RESTRICTIONS : Vinted interdit la collecte automatique sans autorisation. L'achat-revente professionnel peut relever des obligations Vinted Pro et fiscales. Le classement est une aide à la décision, sans garantie de bénéfice.

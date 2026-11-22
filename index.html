@@ -1,668 +1,460 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SNIPER HQ ULTRA</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090e1b">
+<title>SNIPER HQ · Mobile</title>
 <style>
 :root{
---bg:#080d19;--panel:#111b2e;--panel2:#17243a;
---line:#293852;--text:#eff5ff;--muted:#91a3bf;
---green:#45edb0;--purple:#a18bff;--red:#ff7188;
+ color-scheme:dark;
+ --bg:#090e1b;
+ --panel:#121c30;
+ --panel2:#192640;
+ --line:#2d3e5c;
+ --ink:#f0f5ff;
+ --muted:#9baec9;
+ --lime:#7cfbb7;
+ --warn:#ffd084;
+ --danger:#ff8396
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);
-font-family:Arial,Helvetica,sans-serif}
-button,input,select{font:inherit}
-button{cursor:pointer}
-.app{display:flex;min-height:100vh}
-aside{width:235px;background:#0d1525;border-right:1px solid var(--line);
-padding:24px 15px;flex-shrink:0}
-.brand{font-size:24px;font-weight:900;margin-bottom:7px}
-.brand span{color:var(--green)}
-.subtitle{font-size:11px;color:var(--muted)}
-nav{margin-top:38px}
-nav button{width:100%;display:block;text-align:left;background:transparent;
-color:#b8c7df;border:0;padding:15px;border-radius:11px;margin-bottom:5px}
-nav button.active,nav button:hover{background:#193c37;color:var(--green)}
-main{flex:1;min-width:0;padding:30px;max-width:1700px}
-header{display:flex;justify-content:space-between;align-items:center;
-gap:16px;flex-wrap:wrap}
-h1{font-size:32px;margin:0 0 8px}
-h2{font-size:19px;margin:0 0 17px}
-h3{margin-top:0}
-p{color:var(--muted);line-height:1.6}
-.btn{border:1px solid var(--line);background:#24334c;color:white;
-padding:11px 15px;border-radius:10px;font-weight:bold}
-.btn:hover{filter:brightness(1.2)}
-.primary{background:var(--green);color:#09241c;border-color:var(--green)}
-.danger{color:var(--red)}
-.hero{background:linear-gradient(105deg,#182942,#164337);
-border:1px solid #30665a;border-radius:18px;padding:25px;
-margin:24px 0}
-.hero h2{font-size:25px}
-.hero p{max-width:650px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);
-gap:14px;margin-bottom:22px}
-.card,.panel{background:var(--panel);border:1px solid var(--line);
-border-radius:15px;padding:19px}
-.card small{color:var(--muted)}
-.number{font-size:29px;font-weight:900;margin-top:13px}
-.green{color:var(--green)}
-.purple{color:var(--purple)}
-.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px}
-.panel{margin-bottom:18px}
-.tools{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;margin-bottom:17px}
-input,select,textarea{background:#0c1423;color:white;
-border:1px solid #34435d;padding:12px;border-radius:9px;width:100%}
-input:focus,select:focus{outline:1px solid var(--green)}
-label{display:block;color:#b6c5db;font-size:12px;margin-bottom:6px}
-.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.deal{display:grid;grid-template-columns:55px 1fr 105px 110px;
-gap:12px;align-items:center;padding:14px;background:var(--panel2);
-border:1px solid var(--line);border-radius:13px;margin-bottom:10px}
-.score{border:2px solid var(--green);border-radius:12px;padding:12px 4px;
-text-align:center;font-weight:900;font-size:17px;color:var(--green)}
-.deal strong{font-size:14px}
-.meta{color:var(--muted);font-size:11px;margin-top:7px;line-height:1.5}
-.money{font-size:17px;font-weight:900}
-.money small{display:block;font-size:10px;color:var(--muted);
-font-weight:normal;margin-top:5px}
-.actions{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px}
-.mini{padding:7px 9px;background:#283a54;color:white;
-border:1px solid #415674;border-radius:7px;font-size:11px;
-text-decoration:none}
-.section{display:none}
-.section.active{display:block}
-.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-.full{grid-column:1/-1}
-.empty{color:var(--muted);text-align:center;padding:45px 15px}
-table{width:100%;border-collapse:collapse}
-td,th{padding:12px;border-bottom:1px solid var(--line);
-text-align:left;font-size:12px}
-th{color:var(--muted)}
-.tablewrap{overflow-x:auto}
-.notice{background:#102b29;border:1px solid #315e52;
-padding:15px;border-radius:11px;color:#c0eadd;font-size:12px;
-line-height:1.7;margin-bottom:15px}
-aside .foot{margin-top:35px;font-size:11px;line-height:1.6;color:var(--muted)}
-@media(max-width:1050px){
-.layout{grid-template-columns:1fr}
-.stats{grid-template-columns:repeat(2,1fr)}
+body{
+ margin:0;
+ background:radial-gradient(ellipse at top right,#19264b 0,transparent 55%),var(--bg);
+ color:var(--ink);
+ font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;
+ min-height:100vh
 }
-@media(max-width:700px){
-.app{display:block}
-aside{width:100%;padding:15px}
-nav{display:flex;overflow:auto;margin-top:15px}
-nav button{white-space:nowrap;padding:10px}
-aside .foot{display:none}
-main{padding:15px}
-h1{font-size:25px}
-.tools,.formgrid{grid-template-columns:1fr}
-.deal{grid-template-columns:48px 1fr 90px}
-.deal .valuebuy{display:none}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:var(--lime)}
+.wrap{width:min(1170px,100%);margin:auto;padding:22px 18px 100px}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{font-size:24px;font-weight:900;letter-spacing:-.7px}
+.logo em{color:var(--lime);font-style:normal}
+.tag{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
+.pill{border:1px solid #426e64;background:#173b34;color:var(--lime);border-radius:30px;padding:5px 11px;font-size:11px;font-weight:700}
+h1{font-size:clamp(27px,4vw,42px);line-height:1.1;letter-spacing:-1px;margin:23px 0 8px}
+h2{font-size:18px;margin:0 0 13px}
+p{color:var(--muted);margin:8px 0 16px}
+.hero{padding:24px;border:1px solid #385e72;border-radius:22px;background:linear-gradient(105deg,#172545,#123d39);margin:22px 0}
+.hero p{max-width:640px}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+.tabs{display:flex;gap:8px;overflow:auto;margin:18px 0}
+.tab{white-space:nowrap;border:1px solid var(--line);background:#17233a;color:var(--ink);border-radius:12px;padding:12px 16px;font-weight:750}
+.tab.active{background:var(--lime);color:#09211a;border-color:var(--lime)}
+.screen{display:none}
+.screen.active{display:block}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0 20px}
+.stat{padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:17px}
+.stat b{display:block;font-size:25px;margin-top:5px}
+.panel{background:var(--panel);border:1px solid var(--line);padding:20px;border-radius:18px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.field label{font-size:12px;color:#b2c5df;display:block;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;border:1px solid #3c4c68;background:#0c1525;color:var(--ink);padding:12px;border-radius:11px;outline:none}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--lime)}
+.wide{grid-column:1/-1}
+.actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.btn{padding:11px 15px;background:#263851;color:#fff;border:1px solid #3a506c;border-radius:11px;font-weight:700}
+.btn.primary{background:var(--lime);color:#0b241b;border-color:var(--lime)}
+.btn.secondary{background:transparent}
+.btn.danger{color:var(--danger)}
+.hint{border:1px solid #3b625c;background:#102e30;border-radius:12px;padding:12px 15px;color:#c6ebdd;font-size:13px;margin:12px 0}
+.result{border-radius:16px;background:#101d31;border:1px solid var(--line);padding:17px}
+.result.green{border-color:#347d64}
+.result.orange{border-color:#876b45}
+.result.red{border-color:#8e4259}
+.rhead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.number{font-size:26px;font-weight:900;color:var(--lime)}
+.score{font-size:12px;min-width:65px;text-align:center;border-radius:10px;padding:10px;background:#26483d;color:var(--lime);font-weight:900}
+.details{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
+.detail{background:#1b2a42;border-radius:11px;padding:11px}
+.detail strong{display:block;font-size:19px}
+.list{display:grid;gap:10px}
+.item{border:1px solid var(--line);border-radius:14px;background:#18253b;padding:15px}
+.itemrow{display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+.item h3{margin:0;font-size:16px}
+.item .sub{font-size:12px;color:var(--muted)}
+.reason{font-size:12px;color:#bbcbdb;margin:10px 0}
+.redtxt{color:var(--danger)}
+.greentxt{color:var(--lime)}
+.filter{display:flex;gap:9px;margin-bottom:13px}
+.filter input,.filter select{min-width:0;background:#0c1525;color:white;border:1px solid var(--line);border-radius:10px;padding:12px}
+.filter input{flex:1}
+.empty{text-align:center;padding:33px 10px;color:var(--muted)}
+.foot{color:var(--muted);font-size:12px;margin-top:24px}
+.hidden{display:none!important}
+@media(max-width:720px){
+ .wrap{padding:15px 12px 80px}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .panel{padding:15px}
+ .grid{grid-template-columns:1fr}
+ .wide{grid-column:auto}
+ .details{grid-template-columns:repeat(2,1fr)}
+ .hero{padding:20px}
+ .top .pill{font-size:10px}
 }
 </style>
 </head>
 <body>
-<div class="app">
-<aside>
-<div class="brand">◎ SNIPER <span>HQ</span></div>
-<div class="subtitle">ULTRA • REVENTE INTELLIGENTE</div>
-<nav>
-<button class="active" onclick="page('dashboard',this)">◈ Tableau de bord</button>
-<button onclick="page('deals',this)">◎ Opportunités</button>
-<button onclick="page('add',this)">＋ Ajouter</button>
-<button onclick="page('pipeline',this)">▤ Mes affaires</button>
-<button onclick="page('settings',this)">⚙ Paramètres</button>
-</nav>
-<div class="foot">Analyse indépendante. Non affilié à Vinted.
-Aucune collecte automatique non autorisée.</div>
-</aside>
-
-<main>
-<header>
-<div>
-<div class="green" style="font-size:11px;letter-spacing:2px">
-INTELLIGENCE D'ACHAT-REVENTE</div>
-<h1 id="pageTitle">Tableau de bord</h1>
-<p id="pageSub">Les opportunités classées selon leur rentabilité.</p>
-</div>
-<div class="row">
-<button class="btn" onclick="refresh()">↻ Actualiser</button>
-<button class="btn primary" onclick="page('add')">＋ Nouvelle annonce</button>
-</div>
+<div class="wrap">
+<header class="top">
+ <div>
+  <div class="logo">◎ SNIPER <em>HQ</em></div>
+  <div class="tag">Comparateur Vinted · version mobile</div>
+ </div>
+ <span class="pill">ANALYSE ASSISTÉE</span>
 </header>
-
-<section id="dashboard" class="section active">
 <div class="hero">
-<h2>Repère les meilleures affaires avant d'acheter.</h2>
-<p>Analyse les prix, compare les marges, identifie les risques
-et classe les annonces les plus intéressantes.</p>
-<button class="btn primary" onclick="page('deals')">
-Explorer mes opportunités →</button>
+ <span class="tag">Repère • Compare • Décide</span>
+ <h1>Achète mieux.<br><span style="color:var(--lime)">Revends plus intelligemment.</span></h1>
+ <p>Depuis ton téléphone : copie le lien d'une annonce Vinted, saisis son prix et les prix comparables que tu observes, puis obtiens une estimation de marge et un classement de tes opportunités.</p>
+ <div class="actions">
+  <button class="btn primary" onclick="show('analyser')">＋ Analyser une annonce</button>
+  <button class="btn" onclick="show('liste')">Voir mon classement</button>
+ </div>
 </div>
-<div class="stats" id="stats"></div>
-<div class="layout">
-<div class="panel">
-<h2>🏆 Top opportunités</h2>
-<div id="topDeals"></div>
+<div class="stats">
+ <div class="stat"><span class="small muted">Annonces suivies</span><b id="nTotal">0</b></div>
+ <div class="stat"><span class="small muted">À examiner</span><b id="nGood">0</b></div>
+ <div class="stat"><span class="small muted">Marge estimée totale</span><b id="nProfit">0 €</b></div>
+ <div class="stat"><span class="small muted">Achats enregistrés</span><b id="nBought">0</b></div>
 </div>
-<div class="panel">
-<h2>🎯 Ton moteur de décision</h2>
-<div class="notice">Les bénéfices sont estimés.
-Vérifie le prix réel, l'authenticité, l'état et la demande
-avant chaque achat.</div>
-<p>🟢 Score 75–100 : potentiel élevé</p>
-<p>🟡 Score 50–74 : à examiner</p>
-<p>🔴 Score inférieur à 50 : risque ou faible marge</p>
-<hr style="border-color:var(--line)">
-<h3>Recherches Vinted</h3>
-<div id="quickLinks"></div>
-</div>
-</div>
-</section>
+<nav class="tabs">
+ <button class="tab active" data-screen="analyser" onclick="show('analyser')">◎ Analyser</button>
+ <button class="tab" data-screen="liste" onclick="show('liste')">🏆 Classement</button>
+ <button class="tab" data-screen="suivi" onclick="show('suivi')">📦 Suivi</button>
+ <button class="tab" data-screen="reglages" onclick="show('reglages')">⚙ Sauvegardes</button>
+</nav>
 
-<section id="deals" class="section">
+<section id="analyser" class="screen active">
 <div class="panel">
-<h2>🔍 Toutes les opportunités</h2>
-<div class="tools">
-<input id="search" placeholder="Rechercher une marque, un produit..."
-oninput="renderDeals()">
-<select id="categoryFilter" onchange="renderDeals()"></select>
-<select id="sort" onchange="renderDeals()">
-<option value="score">Meilleur score</option>
-<option value="profit">Plus gros bénéfice</option>
-<option value="roi">Meilleur ROI</option>
-<option value="price">Prix le plus bas</option>
-<option value="recent">Ajout récent</option>
-</select>
-</div>
-<div id="allDeals"></div>
-</div>
-</section>
-
-<section id="add" class="section">
-<div class="panel">
-<h2>＋ Analyser une véritable annonce</h2>
-<div class="notice">Renseigne les informations d'une annonce
-Vinted. Le calcul et le classement se feront automatiquement.</div>
-<form id="dealForm">
-<input type="hidden" id="editId">
-<div class="formgrid">
-<div class="full">
-<label>Nom de l'article *</label>
-<input id="title" required placeholder="Ex : Nike Air Max 95">
-</div>
-<div>
-<label>Catégorie</label>
-<select id="category"></select>
-</div>
-<div>
-<label>État</label>
-<select id="condition">
-<option>Neuf</option>
-<option>Très bon état</option>
-<option>Bon état</option>
-<option>Satisfaisant</option>
-</select>
-</div>
-<div>
-<label>Prix de l'annonce (€)</label>
-<input id="buy" type="number" step=".01" min="0" required>
-</div>
-<div>
-<label>Prix de revente estimé (€)</label>
-<input id="resale" type="number" step=".01" min="0" required>
-</div>
-<div>
-<label>Livraison + protection achat (€)</label>
-<input id="shipping" type="number" step=".01" min="0" value="5">
-</div>
-<div>
-<label>Autres frais (€)</label>
-<input id="fees" type="number" step=".01" min="0" value="0">
-</div>
-<div>
-<label>Marge de sécurité (€)</label>
-<input id="reserve" type="number" step=".01" min="0" value="3">
-</div>
-<div>
-<label>Confiance dans le prix de revente</label>
-<select id="confidence">
-<option value="5">5 — Très fiable</option>
-<option value="4">4 — Fiable</option>
-<option value="3" selected>3 — Moyenne</option>
-<option value="2">2 — Incertaine</option>
-<option value="1">1 — Très incertaine</option>
-</select>
-</div>
-<div>
-<label>Risque (authenticité, état, délai)</label>
-<select id="risk">
-<option value="1">1 — Très faible</option>
-<option value="2">2 — Faible</option>
-<option value="3" selected>3 — Moyen</option>
-<option value="4">4 — Élevé</option>
-<option value="5">5 — Très élevé</option>
-</select>
-</div>
-<div>
-<label>Statut</label>
-<select id="status">
-<option value="repere">Repéré</option>
-<option value="achete">Acheté</option>
-<option value="vendu">Vendu</option>
-<option value="ignore">Ignoré</option>
-</select>
-</div>
-<div class="full">
-<label>Lien de l'annonce Vinted</label>
-<input id="url" type="url" placeholder="https://www.vinted.fr/items/...">
-</div>
-<div class="full">
-<label>Notes personnelles</label>
-<textarea id="notes" rows="3"></textarea>
-</div>
-</div>
-<div class="row" style="margin-top:20px">
-<button class="btn primary" type="submit">💾 Enregistrer et analyser</button>
-<button class="btn" type="reset" onclick="clearEdit()">Effacer</button>
+<h2>1. Ajouter une annonce depuis Vinted</h2>
+<div class="hint">📱 Dans Vinted : ouvre un article → Partager → Copier le lien. Reviens ici et colle ce lien. Tes favoris Vinted ne sont pas synchronisés automatiquement.</div>
+<form id="form">
+<input type="hidden" id="editing">
+<div class="grid">
+ <div class="field wide">
+  <label>Lien réel de l'annonce Vinted</label>
+  <input id="url" type="url" placeholder="https://www.vinted.fr/items/..." autocomplete="off" required>
+ </div>
+ <div class="field wide">
+  <label>Nom précis (marque + modèle + taille)</label>
+  <input id="name" required placeholder="Ex. Nike Air Max 95 pointure 43">
+ </div>
+ <div class="field">
+  <label>Catégorie</label>
+  <select id="category">
+   <option>Baskets</option>
+   <option>Vêtements</option>
+   <option>Luxe et sacs</option>
+   <option>Électronique</option>
+   <option>Consoles et jeux</option>
+   <option>Cartes à collectionner</option>
+   <option>Sport</option>
+   <option>Maison</option>
+   <option>Autres</option>
+  </select>
+ </div>
+ <div class="field">
+  <label>État</label>
+  <select id="condition">
+   <option>Neuf avec étiquette</option>
+   <option>Très bon état</option>
+   <option>Bon état</option>
+   <option>Correct</option>
+  </select>
+ </div>
+ <div class="field">
+  <label>Prix affiché (€)</label>
+  <input id="buy" type="number" required min="0.01" step="0.01" placeholder="35">
+ </div>
+ <div class="field">
+  <label>Frais acheteur + livraison (€)</label>
+  <input id="shipping" type="number" min="0" step="0.01" value="6">
+ </div>
+ <div class="field">
+  <label>Autres coûts (emballage, etc.) (€)</label>
+  <input id="fees" type="number" min="0" step="0.01" value="2">
+ </div>
+ <div class="field">
+  <label>Frais de revente (€)</label>
+  <input id="sellfees" type="number" min="0" step="0.01" value="0">
+ </div>
+ <div class="field wide">
+  <label>Prix comparables observés (€), séparés par virgules (3 minimum recommandés)</label>
+  <input id="comps" placeholder="65, 72, 80" inputmode="decimal">
+  <div class="small muted" style="margin-top:6px">Utilise de préférence des ventes réellement conclues. Les prix d'annonces non vendues restent de simples indications.</div>
+ </div>
+ <div class="field">
+  <label>Décote de prudence (%) sur les comparables</label>
+  <input id="discount" type="number" min="0" max="90" value="15">
+ </div>
+ <div class="field">
+  <label>Risques / doute d'authenticité</label>
+  <select id="risk">
+   <option value="1">Faible</option>
+   <option value="2" selected>Moyen</option>
+   <option value="3">Élevé</option>
+  </select>
+ </div>
+ <div class="wide actions">
+  <button class="btn primary" type="submit">Calculer et enregistrer</button>
+  <button class="btn secondary" type="button" onclick="resetForm()">Effacer le formulaire</button>
+  <button class="btn" type="button" onclick="openCompare()">Comparer les prix sur Vinted ↗</button>
+ </div>
 </div>
 </form>
 </div>
+<div id="result" class="panel hidden"></div>
+</section>
 
+<section id="liste" class="screen">
 <div class="panel">
-<h2>📥 Importer plusieurs annonces d'un coup</h2>
-<p>Importe un fichier CSV contenant tes annonces réelles.
-Colonnes attendues : titre, categorie, prix, revente,
-livraison, frais, lien.</p>
-<div class="row">
-<input type="file" id="csvFile" accept=".csv,text/csv"
-style="max-width:350px">
-<button class="btn" onclick="downloadTemplate()">Modèle CSV</button>
+<h2>Meilleures opportunités</h2>
+<div class="filter">
+ <input id="find" placeholder="Chercher un article..." oninput="render()">
+ <select id="sort" onchange="render()">
+  <option value="score">Meilleur score</option>
+  <option value="profit">Plus grosse marge</option>
+  <option value="roi">Meilleur ROI</option>
+  <option value="date">Plus récent</option>
+ </select>
 </div>
-<p id="importMessage"></p>
+<div class="list" id="items"></div>
 </div>
 </section>
 
-<section id="pipeline" class="section">
+<section id="suivi" class="screen">
 <div class="panel">
-<h2>📦 Suivi des achats et reventes</h2>
-<div class="tablewrap">
-<table>
-<thead><tr>
-<th>Article</th><th>Achat</th><th>Revente</th>
-<th>Bénéfice estimé</th><th>Statut</th><th>Action</th>
-</tr></thead>
-<tbody id="pipelineRows"></tbody>
-</table>
-</div>
+<h2>Mes achats et reventes</h2>
+<div id="tracking" class="list"></div>
 </div>
 </section>
 
-<section id="settings" class="section">
+<section id="reglages" class="screen">
 <div class="panel">
-<h2>⚙ Configuration de SNIPER HQ</h2>
-<div class="notice">Tes données sont enregistrées sur cet appareil
-dans ce navigateur. Sauvegarde-les régulièrement au format JSON.</div>
-<div class="formgrid">
-<div>
-<label>Bénéfice minimum recherché (€)</label>
-<input id="minProfit" type="number" min="0" value="15">
-</div>
-<div>
-<label>ROI minimum recherché (%)</label>
-<input id="minRoi" type="number" min="0" value="30">
+<h2>Mes données</h2>
+<p>Les articles sont enregistrés seulement sur ce navigateur/appareil. Sauvegarde-les avant de changer de téléphone ou d'effacer les données du navigateur.</p>
+<div class="actions">
+ <button class="btn primary" onclick="backup()">Télécharger ma sauvegarde JSON</button>
+ <button class="btn" onclick="document.getElementById('restore').click()">Restaurer une sauvegarde</button>
+ <input type="file" id="restore" class="hidden" accept=".json,application/json">
+ <button class="btn danger" onclick="erase()">Tout supprimer</button>
 </div>
 </div>
-<div class="row" style="margin-top:18px">
-<button class="btn primary" onclick="saveSettings()">Enregistrer</button>
-<button class="btn" onclick="exportCSV()">Exporter CSV</button>
-<button class="btn" onclick="backup()">Sauvegarder JSON</button>
-<button class="btn" onclick="document.getElementById('restore').click()">
-Restaurer</button>
-<button class="btn danger" onclick="clearAll()">Réinitialiser les annonces</button>
-</div>
-<input type="file" id="restore" accept=".json" style="display:none"
-onchange="restoreData(event)">
+<div class="panel">
+<h2>Ce qui est automatique… et ce qui ne l'est pas</h2>
+<p>Le site classe automatiquement les annonces que tu ajoutes et calcule la marge en utilisant tes prix comparables. Il ne récupère pas lui-même les annonces ni les prix Vinted et ne voit pas les favoris enregistrés dans ton compte. Aucun prix de revente n'est inventé.</p>
 </div>
 </section>
-
-<p style="font-size:11px;color:var(--muted);margin-top:30px">
-SNIPER HQ ULTRA — Analyse indicative, sans garantie de vente.
-Les chiffres ne comprennent pas les cotisations et impôts propres
-à ton activité. Aucun accès Vinted en direct n'est inclus.
-</p>
-</main>
+<div class="foot">SNIPER HQ est indépendant de Vinted. Résultats indicatifs, sans garantie de vente. Avant l'achat, vérifie la demande réelle, l'authenticité, l'état, les frais et les règles de revente professionnelle. Estimations hors cotisations et impôts.</div>
 </div>
 
 <script>
-"use strict";
-const KEY="sniper_hq_ultra_data_v1";
-const CATS=[
-"Vêtements homme","Vêtements femme","Baskets",
-"Sacs et luxe","Montres","Électronique",
-"Jeux vidéo","Cartes à collectionner",
-"Sport et padel","Maison","Enfants","Autres"
-];
-const DEFAULT={deals:[],settings:{minProfit:15,minRoi:30}};
-let db=load();
-
-function load(){
+const KEY='sniper_mobile_v1';
+const $=id=>document.getElementById(id);
+let deals=[];
 try{
-const x=JSON.parse(localStorage.getItem(KEY));
-if(x&&Array.isArray(x.deals))return {
-deals:x.deals,
-settings:{...DEFAULT.settings,...x.settings}
-};
-}catch(e){}
-return JSON.parse(JSON.stringify(DEFAULT));
+ let v=JSON.parse(localStorage.getItem(KEY)||'[]');
+ deals=Array.isArray(v)?v:[]
+}catch(e){};
+const money=n=>Number(n||0).toLocaleString('fr-FR',{style:'currency',currency:'EUR'});
+const html=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const number=x=>Number(x)||0;
+function save(){
+ try{localStorage.setItem(KEY,JSON.stringify(deals))}
+ catch(e){alert('Sauvegarde locale indisponible. Utilise le téléchargement JSON.')}
 }
-function persist(){
-try{localStorage.setItem(KEY,JSON.stringify(db));}
-catch(e){alert("Stockage indisponible. Exporte tes données.");}
+function show(id){
+ document.querySelectorAll('.screen').forEach(e=>e.classList.toggle('active',e.id===id));
+ document.querySelectorAll('.tab').forEach(e=>e.classList.toggle('active',e.dataset.screen===id));
+ window.scrollTo({top:0,behavior:'smooth'});
+ render()
 }
-function euro(n){
-return new Intl.NumberFormat("fr-FR",{
-style:"currency",currency:"EUR"
-}).format(Number(n)||0);
+function safeUrl(v){
+ try{
+  let u=new URL(v);
+  if(u.protocol!=='https:'||!/(^|\.)vinted\.[a-z.]+$/i.test(u.hostname))return '';
+  return u.toString()
+ }catch(e){return ''}
 }
-function num(n){return Number(n)||0;}
-function esc(s){
-return String(s??"").replace(/[&<>"']/g,c=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",
-'"':"&quot;","'":"&#39;"
-})[c]);
+function parseComps(str){
+ return String(str||'').split(/[;,\n]+/).map(s=>Number(s.trim().replace(',','.'))).filter(x=>Number.isFinite(x)&&x>0)
 }
-function safeLink(u){
-try{
-let x=new URL(u);
-return ["https:","http:"].includes(x.protocol)?x.href:"";
-}catch(e){return "";}
+function assess(d){
+ let p=parseComps(d.comps);
+ p.sort((a,b)=>a-b);
+ let median=p.length?(p.length%2?p[(p.length-1)/2]:(p[p.length/2-1]+p[p.length/2])/2):null;
+ let resale=median===null?null:median*(1-number(d.discount)/100);
+ let cost=number(d.buy)+number(d.shipping)+number(d.fees);
+ let profit=resale===null?null:resale-cost-number(d.sellfees);
+ let roi=profit===null||cost<=0?null:profit/cost*100;
+ let score=profit===null?null:Math.max(0,Math.min(100,Math.round(42+Math.min(24,profit*1.2)+Math.min(25,roi*.24)+(Math.min(p.length,5)-3)*5-(number(d.risk)-1)*12)));
+ return {median,resale,cost,profit,roi,score,count:p.length}
 }
-function evaluate(d){
-const buy=num(d.buy),resale=num(d.resale);
-const cost=buy+num(d.shipping)+num(d.fees);
-const profit=resale-cost-num(d.reserve);
-const roi=cost>0?profit/cost*100:0;
-const confidence=num(d.confidence)||3;
-const risk=num(d.risk)||3;
-let score=50+
-Math.min(25,Math.max(-25,roi/4))+
-Math.min(15,Math.max(-15,profit/3))+
-(confidence-3)*6-(risk-3)*9;
-if(profit<=0)score=Math.min(score,25);
-score=Math.round(Math.max(0,Math.min(100,score)));
-return {cost,profit,roi,score};
+function verdict(a,d){
+ if(a.score===null)return ['À COMPARER','orange','Ajoute des prix comparables pour calculer la rentabilité.'];
+ if(number(d.risk)===3)return ['RISQUE ÉLEVÉ','red','Vérification d’authenticité et d’état indispensable.'];
+ if(a.profit>=20&&a.roi>=40&&a.count>=3&&a.score>=75)return ['POTENTIEL INTÉRESSANT','green','Bonne marge théorique. Vérifie les ventes réellement réalisées.'];
+ if(a.profit<=0)return ['NON RENTABLE','red','Les frais dépassent la revente estimée.'];
+ return ['À VÉRIFIER','orange',a.count<3?'Moins de 3 prix comparables : estimation fragile.':'Marge possible, mais prudence sur les frais et la demande.']
 }
-function page(id,button){
-document.querySelectorAll(".section").forEach(x=>
-x.classList.toggle("active",x.id===id));
-document.querySelectorAll("nav button").forEach(x=>
-x.classList.toggle("active",x===button));
-const names={
-dashboard:"Tableau de bord",deals:"Opportunités",
-add:"Ajouter une annonce",pipeline:"Mes affaires",
-settings:"Paramètres"
-};
-document.getElementById("pageTitle").textContent=names[id];
-render();
-window.scrollTo(0,0);
+function drawResult(d){
+ let a=assess(d),v=verdict(a,d);
+ $('result').classList.remove('hidden');
+ $('result').innerHTML=`
+ <div class="result ${v[1]}">
+  <div class="rhead">
+   <div>
+    <div class="small muted">ANALYSE DE TON ARTICLE</div>
+    <h2>${html(d.name)}</h2>
+    <strong>${v[0]}</strong>
+   </div>
+   <span class="score">${a.score===null?'N/D':a.score+'/100'}</span>
+  </div>
+  <div class="details">
+   <div class="detail"><span class="small muted">Coût total</span><strong>${money(a.cost)}</strong></div>
+   <div class="detail"><span class="small muted">Revente prudente</span><strong>${a.resale===null?'—':money(a.resale)}</strong></div>
+   <div class="detail"><span class="small muted">Marge estimée</span><strong class="${a.profit!==null&&a.profit>=0?'greentxt':'redtxt'}">${a.profit===null?'—':money(a.profit)}</strong></div>
+   <div class="detail"><span class="small muted">ROI</span><strong>${a.roi===null?'—':Math.round(a.roi)+' %'}</strong></div>
+   <div class="detail"><span class="small muted">Médiane comparables</span><strong>${a.median===null?'—':money(a.median)}</strong></div>
+   <div class="detail"><span class="small muted">Comparables</span><strong>${a.count}</strong></div>
+  </div>
+  <p>${v[2]}</p>
+  <a href="${html(d.url)}" target="_blank" rel="noopener noreferrer">Ouvrir l'annonce sur Vinted ↗</a>
+ </div>`;
 }
-function refresh(){
-render();
-alert("Classement recalculé. Les nouvelles annonces doivent être ajoutées ou importées : aucune connexion Vinted en direct.");
-}
-function card(d){
-const e=evaluate(d);
-const color=e.score>=75?"var(--green)":
-e.score>=50?"#ffc276":"var(--red)";
-let link=safeLink(d.url);
-return `<div class="deal">
-<div class="score" style="color:${color};border-color:${color}">
-${e.score}</div>
-<div>
-<strong>${esc(d.title)}</strong>
-<div class="meta">${esc(d.category)} · ${esc(d.condition)}
-<br>ROI ${Math.round(e.roi)}% · ${esc(d.status)}</div>
-<div class="actions">
-<button class="mini" onclick="editDeal('${d.id}')">Modifier</button>
-${link?`<a class="mini" target="_blank" rel="noopener noreferrer"
-href="${esc(link)}">Voir l'annonce ↗</a>`:""}
-<button class="mini" onclick="removeDeal('${d.id}')">Supprimer</button>
-</div>
-</div>
-<div class="valuebuy money">${euro(d.buy)}
-<small>Achat affiché</small></div>
-<div class="money" style="color:${e.profit>=0?'var(--green)':'var(--red)'}">
-${euro(e.profit)}<small>Bénéfice estimé</small></div>
-</div>`;
-}
-function activeDeals(){
-let q=document.getElementById("search").value.toLowerCase();
-let cat=document.getElementById("categoryFilter").value;
-let sort=document.getElementById("sort").value;
-let arr=db.deals.filter(d=>
-(d.title+" "+d.category).toLowerCase().includes(q)&&
-(cat==="all"||d.category===cat));
-arr.sort((a,b)=>{
-let A=evaluate(a),B=evaluate(b);
-if(sort==="profit")return B.profit-A.profit;
-if(sort==="roi")return B.roi-A.roi;
-if(sort==="price")return num(a.buy)-num(b.buy);
-if(sort==="recent")return num(b.created)-num(a.created);
-return B.score-A.score;
+$('form').addEventListener('submit',e=>{
+ e.preventDefault();
+ let keys=['url','name','category','condition','buy','shipping','fees','sellfees','comps','discount','risk'];
+ let d={};
+ keys.forEach(k=>d[k]=$(k).value);
+ d.url=safeUrl(d.url);
+ if(!d.url){alert('Colle un lien HTTPS valide vers Vinted.');return}
+ if(!d.name.trim()||number(d.buy)<=0){alert('Indique le titre et le prix de l’annonce.');return}
+ let id=$('editing').value;
+ let old=deals.find(x=>x.id===id);
+ d.id=old?old.id:Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+ d.created=old?old.created:Date.now();
+ d.status=old?old.status:'repéré';
+ deals=old?deals.map(x=>x.id===id?d:x):[d,...deals];
+ save();
+ render();
+ drawResult(d);
+ $('result').scrollIntoView({behavior:'smooth',block:'start'});
 });
-return arr;
+function resetForm(){
+ $('form').reset();
+ $('editing').value='';
+ $('result').classList.add('hidden')
 }
-function renderDeals(){
-const arr=activeDeals();
-document.getElementById("allDeals").innerHTML=arr.length?
-arr.map(card).join(""):
-'<div class="empty">Aucune annonce. Ajoute ton premier article ou importe un CSV.</div>';
+function edit(id){
+ let d=deals.find(x=>x.id===id);
+ if(!d)return;
+ Object.entries(d).forEach(([k,v])=>{
+  if($(k)&&$(k).tagName!=='SECTION')$(k).value=v
+ });
+ $('editing').value=d.id;
+ show('analyser');
+ $('result').classList.add('hidden')
+}
+function remove(id){
+ if(!confirm('Supprimer cette annonce ?'))return;
+ deals=deals.filter(x=>x.id!==id);
+ save();
+ render()
+}
+function status(id,val){
+ let d=deals.find(x=>x.id===id);
+ if(d){d.status=val;save();render()}
+}
+function openCompare(){
+ let q=$('name').value.trim();
+ if(!q){alert('Indique d’abord le nom précis du produit.');return}
+ window.open('https://www.vinted.fr/catalog?search_text='+encodeURIComponent(q),'_blank','noopener,noreferrer')
+}
+function item(d,track=false){
+ let a=assess(d),v=verdict(a,d);
+ return `<article class="item">
+ <div class="itemrow">
+  <div>
+   <h3>${html(d.name)}</h3>
+   <div class="sub">${html(d.category)} · ${html(d.condition)} · ${html(d.status||'repéré')}</div>
+  </div>
+  <span class="score" style="white-space:nowrap">${a.score===null?'N/D':a.score+'/100'}</span>
+ </div>
+ <div class="details">
+  <div class="detail"><span class="small muted">Prix affiché</span><strong>${money(d.buy)}</strong></div>
+  <div class="detail"><span class="small muted">Marge estimée</span><strong>${a.profit===null?'—':money(a.profit)}</strong></div>
+  <div class="detail"><span class="small muted">ROI</span><strong>${a.roi===null?'—':Math.round(a.roi)+' %'}</strong></div>
+ </div>
+ <div class="reason">${v[0]} · ${v[2]}</div>
+ <div class="actions">
+  <a class="btn" href="${html(d.url)}" target="_blank" rel="noopener noreferrer">Vinted ↗</a>
+  <button class="btn" onclick="edit('${d.id}')">Modifier</button>
+  ${track?`<select class="btn" onchange="status('${d.id}',this.value)">${['repéré','acheté','vendu','ignoré'].map(s=>`<option ${d.status===s?'selected':''}>${s}</option>`).join('')}</select>`:''}
+  <button class="btn danger" onclick="remove('${d.id}')">Supprimer</button>
+ </div>
+ </article>`
 }
 function render(){
-const deals=db.deals;
-const ranked=[...deals].sort((a,b)=>
-evaluate(b).score-evaluate(a).score);
-const bought=deals.filter(d=>["achete","vendu"].includes(d.status));
-const sold=deals.filter(d=>d.status==="vendu");
-const profit=sold.reduce((s,d)=>s+evaluate(d).profit,0);
-const profitable=deals.filter(d=>evaluate(d).profit>=db.settings.minProfit
-&&evaluate(d).roi>=db.settings.minRoi).length;
-document.getElementById("stats").innerHTML=[
-["Annonces analysées",deals.length],
-["Opportunités intéressantes",profitable],
-["Articles achetés",bought.length],
-["Bénéfice estimé des ventes",euro(profit)]
-].map(([k,v])=>`<div class="card"><small>${k}</small>
-<div class="number">${v}</div></div>`).join("");
-document.getElementById("topDeals").innerHTML=ranked.length?
-ranked.slice(0,6).map(card).join(""):
-'<div class="empty">Ajoute une annonce réelle pour commencer.</div>';
-renderDeals();
-document.getElementById("pipelineRows").innerHTML=deals.length?
-deals.map(d=>{
-let e=evaluate(d);
-return `<tr>
-<td>${esc(d.title)}</td>
-<td>${euro(d.buy)}</td>
-<td>${euro(d.resale)}</td>
-<td style="color:var(--green)">${euro(e.profit)}</td>
-<td>${esc(d.status)}</td>
-<td><button class="mini" onclick="editDeal('${d.id}')">Modifier</button></td>
-</tr>`;
-}).join(""):
-'<tr><td colspan="6">Aucune affaire enregistrée</td></tr>';
+ let n=deals.length;
+ let good=deals.filter(x=>{
+  let a=assess(x);
+  return a.profit>=20&&a.roi>=40&&a.count>=3&&number(x.risk)<3
+ }).length;
+ let margin=deals.reduce((s,d)=>{
+  let a=assess(d);
+  return s+(a.profit>0?a.profit:0)
+ },0);
+ $('nTotal').textContent=n;
+ $('nGood').textContent=good;
+ $('nProfit').textContent=money(margin);
+ $('nBought').textContent=deals.filter(d=>d.status==='acheté'||d.status==='vendu').length;
+ let q=$('find').value.toLowerCase();
+ let items=deals.filter(d=>(d.name+' '+d.category).toLowerCase().includes(q));
+ let sort=$('sort').value;
+ items.sort((a,b)=>sort==='date'?b.created-a.created:(assess(b)[sort]??-99999)-(assess(a)[sort]??-99999));
+ $('items').innerHTML=items.length?items.map(x=>item(x)).join(''):'<div class="empty">Aucune annonce. Ajoute un lien Vinted depuis ton téléphone.</div>';
+ $('tracking').innerHTML=deals.length?deals.map(x=>item(x,true)).join(''):'<div class="empty">Aucun article suivi.</div>'
 }
-function editDeal(id){
-const d=db.deals.find(x=>x.id===id);
-if(!d)return;
-for(const k of ["title","category","condition","buy","resale",
-"shipping","fees","reserve","confidence","risk","status","url","notes"]){
-document.getElementById(k).value=d[k]??"";
-}
-document.getElementById("editId").value=id;
-page("add");
-}
-function clearEdit(){document.getElementById("editId").value="";}
-document.getElementById("dealForm").addEventListener("submit",e=>{
-e.preventDefault();
-const fields=["title","category","condition","buy","resale",
-"shipping","fees","reserve","confidence","risk","status","url","notes"];
-let d={};
-fields.forEach(k=>d[k]=document.getElementById(k).value);
-d.title=d.title.trim();
-if(!d.title){alert("Indique un nom.");return;}
-if(d.url&&!safeLink(d.url)){alert("Lien invalide.");return;}
-for(let k of ["buy","resale","shipping","fees","reserve"]){
-d[k]=Math.max(0,num(d[k]));
-}
-let id=document.getElementById("editId").value;
-const old=db.deals.find(x=>x.id===id);
-d.id=old?old.id:"d"+Date.now()+Math.random().toString(36).slice(2);
-d.created=old?old.created:Date.now();
-if(old)db.deals=db.deals.map(x=>x.id===id?d:x);
-else db.deals.unshift(d);
-persist();
-document.getElementById("dealForm").reset();
-clearEdit();
-page("deals");
-});
-function removeDeal(id){
-if(!confirm("Supprimer cette annonce ?"))return;
-db.deals=db.deals.filter(x=>x.id!==id);
-persist();render();
-}
-function saveSettings(){
-db.settings.minProfit=Math.max(0,num(document.getElementById("minProfit").value));
-db.settings.minRoi=Math.max(0,num(document.getElementById("minRoi").value));
-persist();render();alert("Réglages enregistrés.");
-}
-function download(name,content,type){
-const blob=new Blob([content],{type});
-const u=URL.createObjectURL(blob);
-const a=document.createElement("a");
-a.href=u;a.download=name;a.click();
-setTimeout(()=>URL.revokeObjectURL(u),1000);
-}
-function csvValue(v){
-const s=String(v??"");
-return '"'+s.replace(/"/g,'""')+'"';
-}
-const HEAD=["titre","categorie","prix","revente","livraison","frais","lien"];
-function downloadTemplate(){
-download("modele-sniper.csv",HEAD.join(";")+"\n","text/csv;charset=utf-8");
-}
-function exportCSV(){
-const lines=[HEAD.join(";"),...db.deals.map(d=>
-[d.title,d.category,d.buy,d.resale,d.shipping,d.fees,d.url]
-.map(csvValue).join(";"))];
-download("sniper-annonces.csv",lines.join("\n"),"text/csv;charset=utf-8");
-}
-function parseCSV(text){
-text=text.replace(/^\uFEFF/,"");
-const rows=[];let row=[],cell="",quote=false;
-const first=text.split(/\r?\n/)[0]||"";
-const sep=(first.match(/;/g)||[]).length>=(first.match(/,/g)||[]).length?";":",";
-for(let i=0;i<text.length;i++){
-const c=text[i];
-if(c==='"'){
-if(quote&&text[i+1]==='"'){cell+='"';i++;}
-else quote=!quote;
-}else if(c===sep&&!quote){row.push(cell);cell="";}
-else if((c==="\n"||c==="\r")&&!quote){
-row.push(cell);if(row.some(x=>x.trim()))rows.push(row);
-row=[];cell="";
-if(c==="\r"&&text[i+1]==="\n")i++;
-}else cell+=c;
-}
-row.push(cell);if(row.some(x=>x.trim()))rows.push(row);
-if(rows.length<2)throw Error("CSV vide ou sans annonces.");
-const normalize=s=>s.trim().toLowerCase().normalize("NFD")
-.replace(/[\u0300-\u036f]/g,"");
-const heads=rows.shift().map(normalize);
-const aliases={
-titre:"title",title:"title",
-categorie:"category",category:"category",
-prix:"buy",buy:"buy",price:"buy",
-revente:"resale",resale:"resale",
-livraison:"shipping",shipping:"shipping",
-frais:"fees",fees:"fees",
-lien:"url",url:"url"
-};
-const keys=heads.map(x=>aliases[x]||x);
-if(!["title","buy","resale"].every(x=>keys.includes(x)))
-throw Error("Colonnes obligatoires : titre, prix, revente.");
-let count=0;
-rows.forEach((r,i)=>{
-let obj={};
-keys.forEach((k,j)=>obj[k]=(r[j]||"").trim());
-if(!obj.title)return;
-db.deals.push({
-id:"csv"+Date.now()+i,
-title:obj.title,
-category:obj.category||"Autres",
-condition:"Très bon état",
-buy:Math.max(0,num(obj.buy)),
-resale:Math.max(0,num(obj.resale)),
-shipping:Math.max(0,num(obj.shipping)),
-fees:Math.max(0,num(obj.fees)),
-reserve:3,confidence:3,risk:3,
-status:"repere",url:safeLink(obj.url||""),
-notes:"Import CSV",created:Date.now()
-});
-count++;
-});
-persist();render();return count;
-}
-document.getElementById("csvFile").onchange=async function(e){
-const f=e.target.files[0];if(!f)return;
-try{
-const n=parseCSV(await f.text());
-document.getElementById("importMessage").textContent=
-n+" annonce(s) importée(s).";
-}catch(err){
-document.getElementById("importMessage").textContent=err.message;
-}
-this.value="";
-};
 function backup(){
-download("sniper-sauvegarde.json",JSON.stringify(db,null,2),
-"application/json");
+ let blob=new Blob([JSON.stringify(deals,null,2)],{type:'application/json'});
+ let url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;
+ a.download='sniper-hq-sauvegarde.json';
+ a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000)
 }
-async function restoreData(e){
-try{
-const f=e.target.files[0];if(!f)return;
-const x=JSON.parse(await f.text());
-if(!Array.isArray(x.deals))throw Error("Fichier invalide.");
-db={deals:x.deals,settings:{...DEFAULT.settings,...x.settings}};
-persist();render();alert("Sauvegarde restaurée.");
-}catch(err){alert(err.message);}
-e.target.value="";
+$('restore').addEventListener('change',async e=>{
+ let f=e.target.files[0];
+ if(!f)return;
+ try{
+  let v=JSON.parse(await f.text());
+  if(!Array.isArray(v))throw Error('Fichier invalide');
+  if(!confirm('Remplacer les articles actuels ?'))return;
+  deals=v.filter(x=>x&&typeof x.name==='string'&&safeUrl(x.url));
+  save();
+  render();
+  alert('Sauvegarde restaurée.')
+ }catch(err){
+  alert('Erreur : '+err.message)
+ }finally{
+  e.target.value=''
+ }
+});
+function erase(){
+ if(confirm('Supprimer TOUTES les annonces sauvegardées sur cet appareil ?')){
+  deals=[];
+  save();
+  render()
+ }
 }
-function clearAll(){
-if(!confirm("Supprimer toutes les annonces enregistrées ?"))return;
-db.deals=[];persist();render();
-}
-function init(){
-const options=CATS.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("");
-document.getElementById("category").innerHTML=options;
-document.getElementById("categoryFilter").innerHTML=
-'<option value="all">Toutes catégories</option>'+options;
-document.getElementById("minProfit").value=db.settings.minProfit;
-document.getElementById("minRoi").value=db.settings.minRoi;
-const brands=["Nike","Adidas","Patagonia","Nintendo Switch",
-"PlayStation","Pokémon","Carhartt","Sandro","Raquette padel"];
-document.getElementById("quickLinks").innerHTML=
-brands.map(x=>`<a class="mini" style="display:inline-block;margin:4px"
-target="_blank" rel="noopener noreferrer"
-href="https://www.vinted.fr/catalog?search_text=${encodeURIComponent(x)}">${esc(x)} ↗</a>`).join("");
 render();
-}
-init();
 </script>
 </body>
 </html>
